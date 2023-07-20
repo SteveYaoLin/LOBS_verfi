@@ -3,8 +3,6 @@
     `define LOBS_CLK `HIER_SOC_MAIN.u_lobs.ELACLK
     `define LOBS_RUN `HIER_SOC_MAIN.u_lobs.u_compare_signal.ela_run_term
     `define LOBS_RSTN `HIER_SOC_MAIN.u_lobs.ela_resetn
-    `define TRIGGER_TB_CONNECT_LOBS_OPT0 TRIGGER_TB_CONNECT_DRAM_OPT3
-    `define TRIGGER_TB_DISCONNECT_LOBS_OPT0 TRIGGER_TB_DISCONNECT_DRAM_OPT3
     
     reg  [127:0] DBUS0;
     // DBUS [0] = 0;
@@ -25,9 +23,9 @@
     end
 logic active_lobs_opt0 ;
 always begin
-    `HIER_TB_CVC_SOC.cvc_trigger_get(`TRIGGER_TB_CONNECT_DRAM_OPT4);
+    `HIER_TB_CVC_SOC.cvc_trigger_get(`TRIGGER_TB_CONNECT_LOBS_OPT0);
     active_lobs_opt0 = 1'b1;
-    `HIER_TB_CVC_SOC.cvc_trigger_get(`TRIGGER_TB_DISCONNECT_DRAM_OPT4);
+    `HIER_TB_CVC_SOC.cvc_trigger_get(`TRIGGER_TB_DISCONNECT_LOBS_OPT0);
     active_lobs_opt0 = 1'b0;
 end
 always @(active_lobs_opt0) begin
